@@ -1,171 +1,81 @@
-<p align="center"><img src="assets/covers/19-file-transfer-go.jpg" alt="file-transfer-go 项目封面" width="100%"></p>
+<p align="center"><img src="assets/covers/19-file-transfer-go.jpg" alt="文件快传 项目封面" width="100%"></p>
 
-# 文件快传 - P2P文件传输工具
+<h1 align="center">文件快传 · P2P File Transfer</h1>
 
+<p align="center">基于 WebRTC 的点对点传输，六位取件码即传即用，服务器不存文件</p>
 
-**安全、快速、简单的点对点文件传输解决方案 - 无需注册，即传即用**
+<p align="center">
+  <a href="https://transfer.52python.cn/">在线体验</a> ·
+  <a href="https://transfer.52python.cn/help">帮助文档</a>
+</p>
 
-## [在线体验](https://transfer.52python.cn) •  [关注我](https://x.com/_MatrixSeven) • [帮助文档](https://transfer.52python.cn/help)
+## 简介
 
-![项目演示](img.png)
+本仓库是 [MatrixSeven/file-transfer-go](https://github.com/MatrixSeven/file-transfer-go) 的 Fork，保留上游完整实现。文件在收发双方之间直连传输，中途不经过服务器存储；发件方选文件生成六位码，收件方输入码即开始接收，适合临时把大文件从 A 机挪到 B 机。
 
+## 功能
 
+- **文件传输**：多文件同时传，大文件支持断点续传
+- **文字传输**：一段文本也能生成取件码发给对方
+- **桌面共享**：共享屏幕，对方输入码观看
+- **目录同步**：现代浏览器下可整目录同步
+- **端到端加密**：WebRTC DataChannel 直连，服务器不落盘
+- **连接状态同步**：双方界面实时显示连接与进度
+- **单文件部署**：Linux / macOS / Windows 均可单文件跑起来
+- **响应式**：手机、平板、桌面自适应
 
-## ✨ 核心功能[端到端数据传输完全基于WebRTC的P2P直连/文件在线传输]
-<div align="center">
+## 技术栈
 
-![React](https://img.shields.io/badge/React-18-blue.svg)
-![Next.js](https://img.shields.io/badge/Next.js-15-black.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)
-![Go](https://img.shields.io/badge/Go-1.22-blue.svg)
-![WebRTC](https://img.shields.io/badge/WebRTC-green.svg)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-blue.svg)
+**前端** Next.js 15 · React 18 · TypeScript 5 · Tailwind CSS 3.4 · Radix UI · Zustand · Lucide
+**后端** Go 1.22 · WebSocket 信令 · 内存存储 · 标准库 HTTP 服务
+**传输** WebRTC DataChannel · P2P 直连 · ICE · STUN / TURN
 
-</div>
+## 快速部署
 
-- 📁 **文件传输** - 支持多文件同时传输
-- 📝 **文字传输** - 快速分享文本内容
-- 🖥️ **桌面共享** - 实时屏幕共享
-- 🖥️ **目录同步** - 在现代浏览器下支持目录同步
-- 🔗 **连接状态同步** - 实时连接状态UI同步
-- 🔒 **端到端加密** - 数据传输安全，服务器不存储文件
-- 🖥️ **文件断点传输** - P2P/WS下大文件断点续传支持
-- 📱 **响应式设计** - 完美适配手机、平板、电脑
-- 🖥️ **多平台支持** - 支持linux/macos/win 单文件部署
-
-
-## 🚀 技术栈
-
-### 前端技术栈
-- **Next.js 15** - React全栈框架，支持SSR/SSG
-- **React 18** - 现代化UI组件库
-- **TypeScript 5** - 类型安全的JavaScript超集
-- **Tailwind CSS 3.4** - 实用优先的CSS框架
-- **Radix UI** - 无障碍访问的组件库
-- **Zustand** - 轻量级状态管理
-- **Lucide React** - 现代化图标库
-
-### 后端技术栈
-- **Go 1.22** - 高性能编程语言
-- **WebSocket** - 实时双向通信
-- **内存存储** - 轻量级数据存储
-- **标准库** - 原生HTTP服务器
-
-### 传输协议
-- **WebRTC DataChannel** - 端到端数据传输
-- **P2P直连** - 点对点连接，无需中转
-- **ICE框架** - 网络连接协商
-- **STUN/TURN** - NAT穿透支持
-
-
-### 架构特点
-- **微服务架构** - 前后端分离
-- **实时通信** - WebSocket + WebRTC
-- **响应式设计** - 移动端适配
-- **容器化** - Docker部署支持
-
-## 📦 快速部署
-
-### 方式一：Docker 一键部署（推荐）
+**Docker（推荐）**
 
 ```bash
-# 使用 Docker Compose（最简单）
 git clone https://github.com/MatrixSeven/file-transfer-go.git
 cd file-transfer-go
 docker-compose up -d
 
-# 或者直接使用 Docker 镜像
+# 或直接用镜像
 docker run -d -p 8080:8080 --name file-transfer-go matrixseven/file-transfer-go:latest
 ```
 
-### 方式二：本地构建部署
+支持 `linux/amd64` 与 `linux/arm64` 多架构镜像，标签有 `latest`、`v1.0.x`、`dev`。
+
+**本地构建**
 
 ```bash
 git clone https://github.com/MatrixSeven/file-transfer-go.git
 cd file-transfer-go
-./build-fullstack.sh 
-./dist/file-transfer-go
+./build-fullstack.sh
+./dist/file-transfer-go      # 访问 http://localhost:8080
 ```
 
-访问 http://localhost:8080 开始使用
-
-### 方式三：开发环境部署
+**开发环境**
 
 ```bash
-# 后端服务
-make dev
-
-# 前端服务（新终端）
-cd chuan-next && yarn && yarn dev
+make dev                      # 后端
+cd chuan-next && yarn && yarn dev   # 前端
 ```
 
-### 部署配置说明
+环境变量：`NODE_ENV`、`PORT`（默认 8080）、`GO_BACKEND_URL`。
 
-#### 环境变量配置
-- `NODE_ENV`: 运行环境（development/production）
-- `PORT`: 服务端口（默认8080）
-- `GO_BACKEND_URL`: 后端服务地址
+## 使用
 
-#### Docker 配置选项
-```yaml
-# docker-compose.yml 可配置项
-environment:
-  - NODE_ENV=production
-  - PORT=8080
-ports:
-  - "8080:8080"
-restart: unless-stopped
-```
+1. **发文件**：选文件 → 生成取件码 → 把六位码发给对方
+2. **发文字**：输入内容 → 生成取件码 → 分享
+3. **共享桌面**：点共享 → 生成取件码 → 对方输入即可观看
 
-#### 多架构支持
-项目支持多架构Docker镜像：
-- `linux/amd64` - x86_64 架构
-- `linux/arm64` - ARM 64位架构
-
-#### 镜像版本
-- `latest` - 最新稳定版本
-- `v1.0.x` - 特定版本号
-- `dev` - 开发版本
-
-## 🎯 使用方法
-
-### 发送文件
-1. 选择文件 → 生成取件码 → 分享6位码
-
-### 文字传输
-1. 输入文字内容 → 生成取件码 → 分享给对方
-
-### 桌面共享
-1. 点击共享桌面 → 生成取件码 → 对方输入码观看
-
-## 📊 项目架构
+## 架构
 
 ```
-发送方 ←─── WebSocket信令 ───→ 服务器 ←─── WebSocket信令 ───→ 接收方
-   │                                                            │
-   └────────────── WebRTC P2P直连传输 ──────────────────────────┘
+发送方 ←── WebSocket 信令 ──→ 服务器 ←── WebSocket 信令 ──→ 接收方
+   └──────────── WebRTC P2P 直连传输 ────────────┘
 ```
 
-## 🛠️ 本地开发
+## 许可证
 
-```bash
-# 后端
-make dev
-
-# 前端
-cd chuan-next && yarn && yarn dev
-```
-
-## 📄 许可证
-
-MIT License
-
----
-
-<div align="center">
-
-⭐ 如果觉得这个项目对你有帮助，请给个星标！
-
-[![Star History Chart](https://api.star-history.com/svg?repos=MatrixSeven/file-transfer-go&type=timeline)]
-
-</div>
+上游为 MIT License，本 Fork 沿用同一许可。
